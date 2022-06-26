@@ -1,4 +1,4 @@
-const {getGridStatus} = require('./getGridStatus');
+const {getGridStatus} = require('../solarman_api/getGridStatus');
 const {getLatestGridFrequency} = require('../../utils/db/queries/getLatestGridFreq')
 const db = require('../../db/index');
 const {sendTelegramMessage} = require('../telegram_bot')
