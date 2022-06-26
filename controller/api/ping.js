@@ -5,9 +5,7 @@ const view = async (req, res) => {
         return res.send(response);
     }).catch((error) => {
         console.log(error);
-    })
-
-    
+    });
 }
 
 module.exports = {
