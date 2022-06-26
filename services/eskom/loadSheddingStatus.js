@@ -22,10 +22,9 @@ const stages = async(data) => {
         case 9:
             return 'Stage 8';
     }
-}
+};
 
 const getLoadsheddingStatus = async () => {
-    // https://loadshedding.eskom.co.za/LoadShedding/GetStatus
     const url = `https://loadshedding.eskom.co.za/LoadShedding/GetStatus`;
     
     const data = await axios.get(url).then(async(res) => {
@@ -39,8 +38,6 @@ const getLoadsheddingStatus = async () => {
         console.log(error);
     }
     );
-
-    console.log(data);
 
     return data;
 };

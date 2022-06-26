@@ -1,4 +1,4 @@
-const {testPower} = require('../../services/solarman_api/testPower');
+const {testPower} = require('../../services/tasks/testPower');
 
 const view = async (req, res) => {
         await testPower().then((response) => {
