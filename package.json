@@ -8,10 +8,13 @@
     "dev": "npx nodemon index.js"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "knex": "^2.1.0",
+    "node-cron": "^3.0.1",
+    "node-telegram-bot-api": "^0.58.0",
     "sqlite3": "^5.0.8"
   },
   "devDependencies": {
