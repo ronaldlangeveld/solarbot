@@ -16,6 +16,12 @@ bot.onText(/\/now/, async(msg, match) => {
     const message = allDataMessage(hasChanged.isOn, batteryLevelNow, sunPower, consumptionNow);
     await sendTelegramMessage(chatId, message);
   });
+
+  bot.onText(/\/debug/, async(msg, match) => {
+    const chatId = msg.chat.id;
+    const status = await testPower();
+    await sendTelegramMessage(chatId, JSON.stringify(status));
+  });
   
 
 module.exports = {
