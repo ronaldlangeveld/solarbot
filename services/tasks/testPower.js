@@ -11,6 +11,9 @@ const testPower = async () => {
         return res;
     });
 
+    // It confused me too, but bare in mind - if called from DATABASE, use status.. if from API, it should be value.
+    // EG gridFrequencyNow.value and gridFrequencyLatest.status
+
     const gridFrequencyNow = status.find(status => status.name === 'Grid Frequency');
     const batteryLevelNow = status.find(status => status.name === 'SoC');
     const sunPower = status.find(status => status.name === 'Total DC Input Power');
@@ -36,8 +39,7 @@ const testPower = async () => {
             hasChanged.gridChange = true;
 
         }
-
-    }
+    };
 
     return {
         gridFrequencyNow,
@@ -47,7 +49,7 @@ const testPower = async () => {
         gridFrequencyLatest,
         hasChanged
     }
-}
+};
 
 module.exports = {
     testPower

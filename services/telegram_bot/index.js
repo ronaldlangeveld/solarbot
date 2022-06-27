@@ -1,6 +1,7 @@
 const {testPower} = require('../tasks/testPower');
 const TelegramBot = require('node-telegram-bot-api');
 const {allDataMessage} = require('./templates');
+const {getAllGridData} = require('../../utils/db/queries/getAllData');
 
 const token = process.env.TELEGRAM_TOKEN;
 
@@ -22,8 +23,21 @@ bot.onText(/\/now/, async(msg, match) => {
     const status = await testPower();
     await sendTelegramMessage(chatId, JSON.stringify(status));
   });
-  
 
+  bot.onText(/\/outages/, async(msg, match) => {
+    const chatId = msg.chat.id;
+    const allData = await getAllGridData();
+
+    const outages = allData.filter(data => data.status === 0);
+    const last = outages.at(-1)?.timestamp;
+    console.log(last);
+    console.log(outages.length);
+
+    const message = `📊 ${outages.length} outages since ${new Date(last).toLocaleString()}`;
+    
+    await sendTelegramMessage(chatId, message);
+  });
+  
 module.exports = {
     sendTelegramMessage
 }
