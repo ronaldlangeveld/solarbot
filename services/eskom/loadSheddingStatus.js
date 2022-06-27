@@ -1,5 +1,7 @@
 const axios = require('axios');
 
+// Turns out Eskom blocks requests from servers, could be an IP range or simply any IP outside South Africa.
+// So putting this feature on hold for now.
 
 const stages = async(data) => {
     switch (data) {
@@ -23,7 +25,6 @@ const stages = async(data) => {
             return 'Stage 8';
     }
 };
-
 const getLoadsheddingStatus = async () => {
     const url = `https://loadshedding.eskom.co.za/LoadShedding/GetStatus`;
     

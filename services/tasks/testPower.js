@@ -18,7 +18,7 @@ const testPower = async () => {
     const gridFrequencyLatest = await getLatestGridFrequency();
     const hasChanged = {
         gridChange: false,
-        isOn: +(gridFrequencyLatest?.status) > 0 ? true : false,
+        isOn: +(gridFrequencyNow?.status) > 0 ? true : false,
     }
 
     if (!gridFrequencyLatest || +(gridFrequencyNow?.value) !== +(gridFrequencyLatest?.status)) {
@@ -34,6 +34,7 @@ const testPower = async () => {
         }
         if(+(gridFrequencyLatest?.status) !== 0 && +(gridFrequencyNow?.value) === 0){
             hasChanged.gridChange = true;
+
         }
 
     }
