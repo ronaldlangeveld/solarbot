@@ -5,14 +5,18 @@
   "repository": "git@github.com:ronaldlangeveld/solarbot.git",
   "license": "MIT",
   "scripts": {
-    "dev": "npx nodemon index.js"
+    "dev": "npx nodemon index.js",
+    "setup": "concurrently \"cd ./db && npx knex migrate:latest\" \"cd ./client && yarn build\""
   },
   "dependencies": {
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
+    "concurrently": "^7.2.2",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "knex": "^2.1.0",
+    "lodash": "^4.17.21",
+    "luxon": "^3.0.1",
     "node-cron": "^3.0.1",
     "node-telegram-bot-api": "^0.58.0",
     "sqlite3": "^5.0.8"
