@@ -11,7 +11,7 @@ const Heatmap = ({ outages, start }) => {
         <>
             <Title title="Outage Heatmap ☠️" className="text-2xl font-bold mt-12 mb-12" />
             <CalendarHeatmap
-                horizontal={width > 768 ? true : false}
+                // horizontal={width > 768 ? true : false}
                 startDate={new Date(start)}
                 endDate={new Date()}
                 values={outageData}

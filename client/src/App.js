@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { getCurrentStatus } from './api/currentStatus';
 import { getDailyCount } from "./api/dailyCount";
 
+
 function App() {
 
   const [loading, setLoading] = useState(true);
