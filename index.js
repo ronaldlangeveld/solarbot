@@ -7,6 +7,7 @@ const bodyparser = require('body-parser');
 const path = require('path');
 const routes = require('./routing/routes');
 const {updateSolarData} = require('./services/sched/jobs');
+
 app.use(bodyparser.urlencoded({ extended: true, limit: '500mb' }));
 app.use(express.json({limit: '50mb'}));
 app.use(express.static(assetLoader()));
