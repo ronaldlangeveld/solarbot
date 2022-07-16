@@ -1,0 +1,6 @@
+{
+    "events": {
+        "restart": "cd ./client && yarn build"
+    },
+    "ignore": ["./client/build/*"]
+}

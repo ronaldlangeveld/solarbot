@@ -30,9 +30,6 @@ bot.onText(/\/now/, async(msg, match) => {
 
     const outages = allData.filter(data => data.status === 0);
     const last = outages.at(-1)?.timestamp;
-    console.log(last);
-    console.log(outages.length);
-
     const message = `📊 ${outages.length} outages since ${new Date(last).toLocaleString()}`;
     
     await sendTelegramMessage(chatId, message);
