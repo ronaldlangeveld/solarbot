@@ -11,9 +11,6 @@ const testPower = async () => {
         return res;
     });
 
-    // It confused me too, but bare in mind - if called from DATABASE, use status.. if from API, it should be value.
-    // EG gridFrequencyNow.value and gridFrequencyLatest.status
-
     const gridFrequencyNow = status.find(status => status.name === 'Grid Frequency');
     const batteryLevelNow = status.find(status => status.name === 'SoC');
     const sunPower = status.find(status => status.name === 'Total DC Input Power');
@@ -29,7 +26,9 @@ const testPower = async () => {
         await db('grid_status').insert({
             status: gridFrequencyNow.value,
             timestamp: Date.now(),
-            battery_level: +(batteryLevelNow?.value) || 0
+            battery_level: +(batteryLevelNow?.value) || 0,
+            production: +(sunPower?.value) || 0,
+            consumption: +(consumptionNow?.value) || 0
         });
 
         if(+(gridFrequencyLatest?.status) === 0 && +(gridFrequencyNow?.value) > 0){

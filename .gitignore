@@ -106,3 +106,5 @@ dist
 *.sqlite3
 
 db.sqlite3
+
+build/

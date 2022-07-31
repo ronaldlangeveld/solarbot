@@ -1,7 +1,7 @@
 const {getAccessToken} = require('./accessToken');
 const axios = require('axios');
 
-const getGridStatus = async() => {
+const getGridStatus = async () => {
 
     const accessToken = await getAccessToken();
     const url = `https://${process.env.SOLARMAN_BASE_API}/device/v1.0/currentData?appId=${process.env.APP_ID}&language=en&=`;

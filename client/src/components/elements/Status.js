@@ -7,7 +7,7 @@ const GridStatus = ({freq}) => (
 );
 
 const GenerationStatus = ({sun}) => {
-    const kwhVal = useMemo(() => convertToKwh(sun.value), [sun.value]);
+    const kwhVal = useMemo(() => convertToKwh(sun), [sun]);
     const genColor = (sun) => {
         if(sun < 0.3){
             return 'btn-error';
@@ -23,7 +23,7 @@ const GenerationStatus = ({sun}) => {
 };
 
 const ConsumptionStatus = ({consumption}) => {
-    const kwhVal = useMemo(() => convertToKwh(consumption.value), [consumption.value]);
+    const kwhVal = useMemo(() => convertToKwh(consumption), [consumption]);
     const consumptionColor = (consumption) => {
         if(consumption < 0.8){
             return 'btn-success';
@@ -43,7 +43,7 @@ const BatteryStatus = ({battery}) => {
 
     useEffect(() => {
         async function chargeValue() {
-            setBatteryCharge(convertToNumber(battery.value));
+            setBatteryCharge(convertToNumber(battery));
         };
         chargeValue();
     }, [battery]);
@@ -61,7 +61,7 @@ const BatteryStatus = ({battery}) => {
         }
     };
 
-    return <progress className={`progress ${batteryColor(batteryCharge)} w-80 md:w-96 h-6`} value={battery.value} max="100"></progress>
+    return <progress className={`progress ${batteryColor(batteryCharge)} w-80 md:w-96 h-6`} value={battery} max="100"></progress>
 };
 
 const Status = ({dataset}) => (
@@ -69,20 +69,20 @@ const Status = ({dataset}) => (
         <div className="flex mt-6 gap-12 text-center justify-center flex-wrap">
             <div>
                 <h1 className="text-1xl mb-2 font-bold">⚡️ Grid Status</h1>
-                <p><GridStatus freq={dataset?.gridFrequencyLatest?.status} /></p>
+                <p><GridStatus freq={dataset?.status} /></p>
             </div>
             <div>
                 <h1 className="text-1xl mb-2 font-bold">☀️ Current Generation</h1>
-                <p><GenerationStatus sun={dataset?.sunPower}/></p>
+                <p><GenerationStatus sun={dataset?.production}/></p>
             </div>
             <div>
                 <h1 className="text-1xl mb-2 font-bold">🏡 Current Consumption</h1>
-                <p><ConsumptionStatus consumption={dataset?.consumptionNow} /></p>
+                <p><ConsumptionStatus consumption={dataset?.consumption} /></p>
             </div>
             <div className="w-full">
-                <h1 className="text-1xl mb-2 font-bold">🔋 Battery Level <span className="text-xs font-normal">{dataset?.batteryLevelNow?.value}%</span></h1>
+                <h1 className="text-1xl mb-2 font-bold">🔋 Battery Level <span className="text-xs font-normal">{dataset?.battery_level}%</span></h1>
                 <div className="align-middle inline-block">
-                    <BatteryStatus battery={dataset?.batteryLevelNow} />
+                    <BatteryStatus battery={dataset?.battery_level} />
                 </div>
             </div>
         </div>

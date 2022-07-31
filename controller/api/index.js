@@ -4,5 +4,8 @@ module.exports = {
     },
     get dailyCount () {
         return require('./dailyCount');
+    },
+    get current () {
+        return require('./current');
     }
 };
