@@ -4,7 +4,6 @@ const db = require('../../db/index');
 // const { getLoadsheddingStatus } = require('../eskom/loadSheddingStatus');
 const e = require('express');
 
-
 const testPower = async () => {
 
     const status = await getGridStatus().then((res) => {

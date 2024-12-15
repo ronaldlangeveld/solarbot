@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx nodemon index.js",
-    "setup": "concurrently \"cd ./db && npx knex migrate:latest\" \"cd ./client && yarn build\""
+    "setup": "concurrently \"cd ./db && npx knex migrate:latest\" \"cd ./client && yarn build\"",
+    "start": "node index.js"
   },
   "dependencies": {
     "axios": "^0.27.2",

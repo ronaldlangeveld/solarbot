@@ -4,7 +4,6 @@ const express = require('express');
 const app = express();
 const port = 3123;
 const bodyparser = require('body-parser');
-const path = require('path');
 const routes = require('./routing/routes');
 const {updateSolarData} = require('./services/sched/jobs');
 

@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "3123:3123"
+    volumes:
+      - .:/usr/src/app
+      - sqlite-db:/usr/src/app/database
+    environment:
+      - NODE_ENV=production
+      - DATABASE_PATH=/usr/src/app/database/app.sqlite
+    command: ["node", "index.js"]
+    restart: unless-stopped
+
+volumes:
+  sqlite-db:
