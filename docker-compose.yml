@@ -5,15 +5,16 @@ services:
     ports:
       - "3123:3123"
     volumes:
-      - .:/usr/src/app
       - sqlite-db:/usr/src/app/database
+    env_file:
+      - .env
     environment:
       - NODE_ENV=production
       - DATABASE_URL=file:/usr/src/app/database/app.sqlite
     command: ["bun", "index.ts"]
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3123/api/health"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:3123/api/health"]
       interval: 2m
       timeout: 10s
       retries: 3
