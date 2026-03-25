@@ -1,0 +1,28 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+}
+
+model GridStatus {
+    id            Int    @id @default(autoincrement())
+    status        Float
+    timestamp     BigInt @default(0)
+    loadshedding  Int?
+    battery_level Int?
+    consumption   Float?
+    production    Float?
+
+    @@map("grid_status")
+}
+
+model Token {
+    id      Int     @id @default(autoincrement())
+    access  String
+    refresh String
+    expires BigInt?
+
+    @@map("tokens")
+}

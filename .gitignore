@@ -104,7 +104,10 @@ dist
 .tern-port
 
 *.sqlite3
+*.sqlite
 
 db.sqlite3
+
+database/
 
 build/

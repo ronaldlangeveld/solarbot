@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   app:
     build:
@@ -11,8 +9,8 @@ services:
       - sqlite-db:/usr/src/app/database
     environment:
       - NODE_ENV=production
-      - DATABASE_PATH=/usr/src/app/database/app.sqlite
-    command: ["node", "index.js"]
+      - DATABASE_URL=file:/usr/src/app/database/app.sqlite
+    command: ["bun", "index.js"]
     restart: unless-stopped
 
 volumes:
