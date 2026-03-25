@@ -1,0 +1,38 @@
+service: solarbot
+
+image: ronaldlangeveld/solarbot
+
+servers:
+  web:
+    hosts:
+      - 37.27.92.247
+    volumes:
+      - "solarbot_data:/usr/src/app/database"
+
+proxy:
+  ssl: true
+  host: solar.langeveld.blog
+  app_port: 3123
+  healthcheck:
+    path: /api/health
+    interval: 3
+    timeout: 3
+
+registry:
+  server: localhost:5555
+
+builder:
+  arch: amd64
+
+env:
+  clear:
+    DATABASE_URL: file:/usr/src/app/database/app.sqlite
+  secret:
+    - APP_SECRET
+    - APP_ID
+    - EMAIL
+    - PASSWORD
+    - SOLARMAN_BASE_API
+    - DEVICE_SERIAL
+    - TELEGRAM_TOKEN
+    - RECIPIENT_ID
