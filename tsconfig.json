@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "types": ["bun-types"]
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "client"]
+}

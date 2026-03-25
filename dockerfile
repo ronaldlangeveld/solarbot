@@ -1,20 +1,23 @@
-# Use the Node.js 16 image
-FROM node:20-alpine
+# Use the official Bun image as the base image
+FROM oven/bun:latest
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json
-COPY package*.json ./
+# Copy package files
+COPY package.json bun.lockb* ./
 
 # Install dependencies
-RUN yarn install
+RUN bun install
 
 # Copy the entire app code into the container
 COPY . .
+
+# Generate Prisma client
+RUN bunx prisma generate
 
 # Expose the application port
 EXPOSE 3123
 
 # Set the default command to start the app
-CMD ["node", "index.js"]
+CMD ["sh", "-c", "bunx prisma migrate deploy && bun index.ts"]
