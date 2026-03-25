@@ -10,8 +10,14 @@ services:
     environment:
       - NODE_ENV=production
       - DATABASE_URL=file:/usr/src/app/database/app.sqlite
-    command: ["bun", "index.js"]
+    command: ["bun", "index.ts"]
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3123/api/health"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
 volumes:
   sqlite-db:

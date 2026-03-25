@@ -1,4 +1,4 @@
-// import { bot } from "./services/telegram_bot/index";
+import { bot } from "./services/telegram_bot/index";
 import { startCron } from "./services/sched/jobs";
 import { getLatestGridFrequency } from "./utils/db/queries/getLatestGridFreq";
 import { getOutagesCount } from "./utils/db/queries/getOutagesCount";
@@ -22,6 +22,9 @@ const server = Bun.serve({
       const data = await testPower();
       return Response.json(data);
     },
+    "/api/health": async () => {
+      return new Response("OK", { status: 200 });
+    },
   },
 });
 
@@ -30,6 +33,7 @@ console.log(`API endpoints:`);
 console.log(`- ${server.url}api/currentStatus`);
 console.log(`- ${server.url}api/dailyCount`);
 console.log(`- ${server.url}api/ping`);
+console.log(`- ${server.url}api/health`);
 
-// startCron();
-// bot.start();
+startCron();
+bot.start();
