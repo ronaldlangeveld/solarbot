@@ -22,7 +22,10 @@ export const testPower = async () => {
       sunPower,
       consumptionNow,
       gridFrequencyLatest,
-      hasChanged: { gridChange: false, isOn: Number(gridFrequencyLatest?.status) !== 0 },
+      hasChanged: {
+        gridChange: false,
+        isOn: Number(gridFrequencyLatest?.status) !== 0,
+      },
     };
   }
 
