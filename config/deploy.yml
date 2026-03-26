@@ -6,8 +6,9 @@ servers:
   web:
     hosts:
       - 37.27.92.247
-    volumes:
-      - "solarbot_data:/usr/src/app/database"
+
+volumes:
+  - "solarbot_data:/usr/src/app/database"
 
 proxy:
   ssl: true
