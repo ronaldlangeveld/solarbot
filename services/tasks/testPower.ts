@@ -14,18 +14,30 @@ export const testPower = async () => {
 
   const gridFrequencyLatest = await getLatestGridFrequency();
 
+  // If the API returned no data, skip everything to avoid false positives
+  if (!gridFrequencyNow) {
+    return {
+      gridFrequencyNow,
+      batteryLevelNow,
+      sunPower,
+      consumptionNow,
+      gridFrequencyLatest,
+      hasChanged: { gridChange: false, isOn: Number(gridFrequencyLatest?.status) !== 0 },
+    };
+  }
+
   const hasChanged = {
     gridChange: false,
-    isOn: +(gridFrequencyNow?.value ?? 0) !== 0,
+    isOn: +(gridFrequencyNow.value ?? 0) !== 0,
   };
 
   if (
     !gridFrequencyLatest ||
-    +(gridFrequencyNow?.value ?? 0) !== Number(gridFrequencyLatest.status)
+    +(gridFrequencyNow.value ?? 0) !== Number(gridFrequencyLatest.status)
   ) {
     await prisma.gridStatus.create({
       data: {
-        status: +(gridFrequencyNow?.value ?? 0),
+        status: +(gridFrequencyNow.value ?? 0),
         timestamp: BigInt(Date.now()),
         battery_level: +(batteryLevelNow?.value ?? 0) || 0,
         production: +(sunPower?.value ?? 0) || 0,
@@ -35,13 +47,13 @@ export const testPower = async () => {
 
     if (
       Number(gridFrequencyLatest?.status) === 0 &&
-      +(gridFrequencyNow?.value ?? 0) > 0
+      +(gridFrequencyNow.value ?? 0) > 0
     ) {
       hasChanged.gridChange = true;
     }
     if (
       Number(gridFrequencyLatest?.status) !== 0 &&
-      +(gridFrequencyNow?.value ?? 0) === 0
+      +(gridFrequencyNow.value ?? 0) === 0
     ) {
       hasChanged.gridChange = true;
     }
